@@ -26,9 +26,11 @@ func (s *AuthorizationServer) GetAuthorizationData(
 
 	cookies, err := authorize.Do(s.Credentials)
 	if err != nil {
-		log.Println("-------------Something went wrong: ", err)
+		log.Println("-------------Something went wrong: "+
+			"\n----------------", err)
 		return nil, status.Errorf(codes.Unauthenticated, err.Error())
 	}
-	log.Println("----------Done")
+	log.Println("----------Done\n" +
+		"-----------------")
 	return &pb.AuthorizationDataResponse{Cookies: cookies}, nil
 }
